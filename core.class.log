@@ -1,0 +1,148 @@
+[handleMsg]:  {
+  key: {
+    remoteJid: '573183390467@s.whatsapp.net',
+    fromMe: false,
+    id: '3AE611107B5B2F880607',
+    participant: undefined
+  },
+  messageTimestamp: 1738202932,
+  pushName: 'Monsalve🤓',
+  broadcast: false,
+  message: Message {
+    conversation: 'Hola',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: 'Hola',
+  from: '573183390467'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_3091a309-1567-4051-9418-b1ffbe1301fa',
+  keyword: 'key_e43f4bef-bf03-40ae-84cd-d1ec516ed68c',
+  answer: '🙌 Hola bienvenido a este *Chatbot*',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: '532a7cb65542fb60097818803b66e09c'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_44afe2a6-daa3-413a-a236-3fce07b28259',
+  keyword: 'ans_3091a309-1567-4051-9418-b1ffbe1301fa',
+  answer: 'te comparto los siguientes links de interes sobre el proyecto\n' +
+    '👉 *doc* para ver la documentación\n' +
+    '👉 *gracias*  para ver la lista de videos\n' +
+    '👉 *discord* unirte al discord\n' +
+    '👉 *tutorial*  para ver la lista de videos',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object]
+    ],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: '825767820b64204fc919ddadee9fcb81'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '573183390467@s.whatsapp.net',
+    fromMe: false,
+    id: '3AA2746CD28E8E5228E3',
+    participant: undefined
+  },
+  messageTimestamp: 1738202942,
+  pushName: 'Monsalve🤓',
+  broadcast: false,
+  message: Message {
+    conversation: 'Menu',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: 'Menu',
+  from: '573183390467'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '573183390467@s.whatsapp.net',
+    fromMe: false,
+    id: '3A4BB20EB1ABEC089EC5',
+    participant: undefined
+  },
+  messageTimestamp: 1738202949,
+  pushName: 'Monsalve🤓',
+  broadcast: false,
+  message: Message {
+    conversation: 'Menú',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: 'Menú',
+  from: '573183390467'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_47250f68-22e0-47a1-94a3-4fbc672895fb',
+  keyword: 'key_21969d4d-fe9c-49dc-93bb-b8382d54a0e7',
+  answer: '🙌 Hola bienvenido a este *Chatbot*',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: '5a64a4aa2def68b88d726d71998eb5c2'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_f81529d9-59a2-43b5-843d-a05abd067a1c',
+  keyword: 'ans_47250f68-22e0-47a1-94a3-4fbc672895fb',
+  answer: 'te comparto los siguientes links de interes sobre el proyecto\n' +
+    '👉 *doc* para ver la documentación\n' +
+    '👉 *gracias*  para ver la lista de videos\n' +
+    '👉 *discord* unirte al discord\n' +
+    '👉 *tutorial*  para ver la lista de videos',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [ [Object], [Object], [Object] ],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: '1789c43b97f19fc9ddaf4ac0d2a0b770'
+}
