@@ -1,0 +1,103 @@
+const flowMenu = addKeyword(['menú'])
+.addAnswer(
+    [
+        '📢 ¡Elige tu opción y recibe más info al instante! 👇',
+        '',
+       ' 1️⃣ Catálogo de Cinturilla 13 varillas Sola 📖✨',
+       ' 2️⃣ Catálogo de Cinturilla 13 varillas con Chaleco 👗🔥',
+        '',
+        '✍️ Escribe el número de la opción que deseas y te enviaremos la info de inmediato. 🚀😊',
+    ],
+    null,
+    null,
+    [flowPrincipal]
+)
+
+const flowCinturillaSola = addKeyword(['1', 'Catálogo de Cinturilla 13 varillas Sola'])
+                    .addAnswer([
+                        '📢 ¡Elige tu opción y recibe más info al instante! 👇',
+                        '',
+                        ' 1️⃣ Material de la Cinturilla 13 Varillas Sola 📖✨',
+                        ''])
+
+const flowMaterialCinturillaSola = addKeyword(['1','Material de la Cinturilla 13 Varillas Sola']).addAnswer(
+    [
+        '✨ Material de la Cinturilla 13 Varillas Sola ✨',
+        '',
+        '👗 Bella está confeccionada con Powernet, un material elástico y resistente, diseñado para ofrecer compresión y firmeza en el abdomen.',
+        '',
+        '🔥 Beneficios:',
+        '✅ Control de abdomen alto, medio y bajo 💃',
+        '✅ Ajuste cómodo y efectivo 🌟',
+        '✅ Material de alta calidad y durabilidad 💖'
+    ],
+    null,
+    null,
+    [flowCinturillaSola]
+)
+
+const flowTuto = addKeyword(['tutorial', 'tuto']).addAnswer(
+    [
+        '🙌 Aquí encontras un ejemplo rapido',
+        'https://bot-whatsapp.netlify.app/docs/example/',
+        '\nEscribe menú',
+    ],
+    null,
+    null,
+    [flowSecundario]
+)
+
+const flowGracias = addKeyword(['gracias', 'grac']).addAnswer(
+    [
+        '🚀 Puedes aportar tu granito de arena a este proyecto',
+        '[*opencollective*] https://opencollective.com/bot-whatsapp',
+        '[*buymeacoffee*] https://www.buymeacoffee.com/leifermendez',
+        '[*patreon*] https://www.patreon.com/leifermendez',
+        '\n*2* Para siguiente paso.',
+    ],
+    null,
+    null,
+    [flowSecundario]
+)
+
+const flowTallas = addKeyword(['discord']).addAnswer(
+    [''],
+    null,
+    null,
+    [flowSecundario]
+)
+
+flowDocs, flowGracias, flowTuto, flowDiscord
+
+3️⃣ Consultar promociones y descuentos 🎉💰
+4️⃣ Hablar con un asesor 📲💬
+
+
+1️⃣
+2️⃣
+3️⃣
+4️⃣
+5️⃣
+6️⃣
+7️⃣
+8️⃣
+9️⃣
+🔟
+
+
+
+
+
+
+
+
+
+        const resumen = `📝 *Resumen de tu pedido:*  
+        📍 Nombre: ${ctx.state.nombre}  
+        🏠 Dirección: ${ctx.state.direccion}  
+        📲 Teléfono: ${ctx.state.telefono}  
+        📏 Talla: ${ctx.state.talla}  
+        🎨 Color: ${ctx.state.color}  
+
+        ✅ Si la información es correcta, responde con *1*.  
+        ❌ Si hay un error, responde con *2* y reiniciamos el proceso.`;
