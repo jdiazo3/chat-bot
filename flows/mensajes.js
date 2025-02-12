@@ -23,10 +23,11 @@ module.exports = {
                 '3️⃣ Material de la Cinturilla 13 Varillas Sola ✨\n' +
                 '4️⃣ Material de la Cinturilla 13 Varillas con Chaleco ✨\n' +
                 '5️⃣ Guía de tallas 📏✨\n' +
-                '6️⃣ Comprar ahora 🎉💰\n\n' +
+                '6️⃣ Comprar ahora 🎉💰\n'+
+                '7️⃣ Cancelar compra ❌\n'+
                 '✍️ Escribe el número de la opción que deseas y te enviaremos la info de inmediato. 🚀😊',
-    menuFallback: 'No he entendido. Por favor elige una opción entre 1 y 6.',
-    
+    menuFallback: 'No he entendido. Por favor elige una opción entre *1* y *6*.',
+    cancelacionFallback: 'No he entendido. Por favor elige una opción *1* o *2* .',
     welcomeMessage: [
         '✨ Bienvenida a Zumo Slim 💖 ⏳',
         '🌿 Cuidarte es amarte 🌿',

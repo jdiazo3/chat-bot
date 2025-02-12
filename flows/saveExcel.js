@@ -2,9 +2,8 @@ const xlsx = require('xlsx');
 const fs = require('fs');
 const path = require('path');
 
-// Ruta del archivo Excel
-const filePath = path.join(__dirname, '../docs/pedidos.xlsx');
-
+// Ruta del archivo ExcelC:\Users\juand\OneDrive
+const filePath = path.join('C:', 'Users', 'juand', 'OneDrive', 'pedidos.xlsx');
 // Función para guardar el pedido en el archivo Excel
 async function guardarPedidoEnExcel(pedido) {
   let workbook;

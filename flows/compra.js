@@ -1,9 +1,18 @@
 const { addKeyword } = require('@bot-whatsapp/bot');
-const guardarPedidoEnExcel = require('./saveExcel.js');
+//const guardarPedidoEnExcel = require('./saveExcel.js');
 const messages = require('./mensajes.js');
+const { insertPedido} = require('./basededatos.js');
+const { ChatbotStates } = require('./enums');
 
 const flowCompra = addKeyword('6', { sensitive: true })
     .addAnswer(messages.greetings)
+    .addAnswer( '1 para comprar la cinturilla sola\n'+
+        '2 para comprar la cinturilla con chaleco\n'+
+        'Digita el numero de tu preferencia segun el producto que vas a comprar'
+        , { capture: true }, async (ctx, { state }) => {
+            await state.update({ producto: ctx.body });
+        console.log('Nombre capturado:', state.getMyState().nombre);
+    })
     .addAnswer(messages.askName, { capture: true }, async (ctx, { state }) => {
         await state.update({ numeroWhat: ctx?.key?.remoteJid?.split('@')[0] });
         await state.update({ nombre: ctx.body });
@@ -41,7 +50,17 @@ const flowCompra = addKeyword('6', { sensitive: true })
             await flowDynamic('Vamos a empezar de nuevo. 📍 digita *6*');
         } else if (choice === '1') {
             try {
-                await guardarPedidoEnExcel(state.getMyState());
+                try {
+                    const userData = await insertPedido(state.getMyState().producto ='1'?'CINTURILLA_SOLA':'CINTURILLA_CHALECO',state.getMyState().nombre,state.getMyState().direccion,
+                    state.getMyState().telefono,state.getMyState().talla,state.getMyState().color,
+                    state.getMyState().numeroWhat,ChatbotStates.PENDIENTE_COMPRA_DROPI); // Llama a la función y maneja el resultado
+                    if (userData) {
+                        await flowDynamic(`Tu id de pedido es: *${userData.insertId}*`);
+                        console.log('Datos de pedido insertados:', userData);
+                    }
+                } catch (error) {
+                    console.error('Error al insertar datos de la base de datos:', error);
+                }
                 await flowDynamic(messages.thankYou);
             } catch (error) {
                 console.error('Error al guardar el pedido:', error);
@@ -51,5 +70,5 @@ const flowCompra = addKeyword('6', { sensitive: true })
             await flowDynamic(messages.incorrectResponse);
         }
     });
-
+// Exportar el objeto directamente
 module.exports = flowCompra;
