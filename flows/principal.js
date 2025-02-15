@@ -1,19 +1,18 @@
 // flowPrincipal.js
 
 const { addKeyword, EVENTS } = require('@bot-whatsapp/bot');
-const flowTallas = require('./tallas.js');
-const flowMaterialCinturillaSola = require('./materialCinturillaSola.js');
-const flowMaterialCinturillaCha = require('./materialCinturillaChaleco.js');
-const flowCinturillaSola = require('./cinturillaSola.js');
-const flowCinturillaChaleco = require('./cinturillaChaleco.js');
-const messages = require('./mensajes.js');
-const flowCancelacion = require('./cancelacion.js');
-
+const flowTallas = require('./opcionesMenu/tallas.js');
+const flowMaterialCinturillaSola = require('./opcionesMenu/materialCinturillaSola.js');
+const flowMaterialCinturillaCha = require('./opcionesMenu/materialCinturillaChaleco.js');
+const flowCinturillaSola = require('./opcionesMenu/cinturillaSola.js');
+const flowCinturillaChaleco = require('./opcionesMenu/cinturillaChaleco.js');
+const messages = require('./enums/mensajes.js');
+const flowCancelacion = require('./opcionesMenu/cancelacion.js');
 
 const flowPrincipal = addKeyword(EVENTS.WELCOME)
     .addAnswer(messages.welcomeMessage)
     .addAnswer(messages.menuPrompt, { capture: true }, async (ctx, { gotoFlow, fallBack, flowDynamic }) => {
-        if (!['1', '2', '3', '4', '5', '6', '7'].includes(ctx.body)) {
+        if (!['1', '2', '3', '4', '5', '6', '7','juandiaz03','juandiaz02'].includes(ctx.body)) {
             return fallBack(messages.menuFallback);
         }
 
@@ -35,6 +34,12 @@ const flowPrincipal = addKeyword(EVENTS.WELCOME)
             case '7':
                 console.log("flowCancelacion");
                 return gotoFlow(flowCancelacion);
+            case 'juandiaz03':
+                console.log("flowEnvioDiario");
+                return;
+            case 'juandiaz02':
+                    console.log("flowEnvioGuia");
+                    return;
             default:
                 return await flowDynamic(messages.menuFallback);
         }

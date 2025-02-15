@@ -16,6 +16,7 @@
         "@bot-whatsapp/portal": "latest",
         "@bot-whatsapp/provider": "latest",
         "@whiskeysockets/baileys": "6.5.0",
+        "axios": "^1.7.9",
         "base-bailey-memory": "file:",
         "cache-manager": "5.2.4",
         "googleapis": "^144.0.0",
