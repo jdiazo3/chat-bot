@@ -1,10 +1,12 @@
-const { addKeyword } = require('@bot-whatsapp/bot');
-const { getUserData,cancelarPedido } = require('../persistencia/basededatos.js');
+const { addKeyword, EVENTS  } = require('@bot-whatsapp/bot');
+const { getUserData,cancelarPedido,getPedidoData } = require('../persistencia/basededatos.js');
 const messages = require('../enums/mensajes.js');
+const { v4: uuidv4 } = require('uuid');
+const ramdomString = uuidv4();
 
 /*flujo cancelación*/
 
-const flowCancelacion = addKeyword('7', { sensitive: true })
+const flowCancelacion = addKeyword(ramdomString)
     .addAnswer('Para iniciar la cancelación de tu pedido, ingresa los siguientes datos uno por uno.')
     .addAnswer('Por favor, ingresa el ID de tu pedido:', { capture: true }, async (ctx, { state }) => {
         await state.update({ idPedido: ctx.body });
@@ -48,7 +50,7 @@ const flowCancelacion = addKeyword('7', { sensitive: true })
         
         await flowDynamic(`📝 *Datos del pedido a cancelar:* 
         📍 ID del pedido: ${state.getMyState().idPedido} 
-        📦 Producto: ${state.getMyState().producto} 
+        📦 Producto: ${state.getMyState().producto==='1'?'CINTURILLA SOLA':'CINTURILLA CHALECO'} 
         📍 Nombre: ${state.getMyState().nombre} 
         🏠 Dirección: ${state.getMyState().direccion} 
         📲 Teléfono: ${state.getMyState().telefono} 
@@ -68,7 +70,6 @@ const flowCancelacion = addKeyword('7', { sensitive: true })
             await flowDynamic('Operación de cancelación detenida. Puedes iniciar de nuevo cuando lo desees digitando *7*.');
         } else if (choice === '1') {
             try {
-                
                 const validacionExitosa = await validarDatosPedido(state);
                 if (validacionExitosa) {
                     const cancelResult = await cancelarPedido(state.getMyState().idPedido); // Asume que esta función maneja la cancelación en la base de datos
@@ -86,11 +87,14 @@ const flowCancelacion = addKeyword('7', { sensitive: true })
                 await flowDynamic('Error al cancelar tu pedido, por favor intenta más tarde o contacta soporte.');
             }
         }
-    });
+    }).addAnswer(messages.furtherAssistance, { capture: true }, async (ctx, { state,fallBack, flowDynamic }) => {
+                if (!['si', 'no'].includes(ctx.body.toLowerCase())) {
+                            return fallBack(messages.colorFallback);
+                        }
+                    });
 
     async function validarDatosPedido(state) {
         try {
-            const idPedido = state.getMyState().idPedido;
             const datosUsuario = {
             producto: state.getMyState().producto,
             nombre: state.getMyState().nombre,
@@ -100,8 +104,8 @@ const flowCancelacion = addKeyword('7', { sensitive: true })
             color: state.getMyState().color,
             };
 
-                        // Fetch data from database
-            const datosBDArray = await getUserData(idPedido);
+            // Fetch data from database
+            const datosBDArray = await getPedidoData(state.getMyState().idPedido);
             console.log('datos de la base de datos', datosBDArray);
 
             // Check that you have valid database data

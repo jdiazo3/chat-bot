@@ -1,0 +1,216 @@
+[handleMsg]:  {
+  key: {
+    remoteJid: '573045993015@s.whatsapp.net',
+    fromMe: false,
+    id: '64CC2931A36110CB8C177E8E959D80AF',
+    participant: undefined
+  },
+  messageTimestamp: 1739984595,
+  pushName: 'Juan David',
+  broadcast: false,
+  message: Message {
+    conversation: 'Hola',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: 'Hola',
+  from: '573045993015'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_aeccf911-78df-488d-b78c-8e275c3c88b9',
+  keyword: 'key_4f087e89-6d45-4c95-9905-bf7502e43c0b',
+  answer: '✨ ¡Hola! Soy Zoé, tu asistente de Zumo Slim 💖 ⏳\n' +
+    '🌿 Cuidarte es amarte 🌿\n' +
+    '\n' +
+    '🔥 ¡Oferta Especial! 🔥\n' +
+    '💰 Antes: ~$140.000~\n' +
+    '🎉 HOY con 30% DCTO: $99.000 😍\n' +
+    '\n' +
+    '🚚 ¡Envío GRATIS! 📦\n' +
+    '💵 Pago contra entrega 💵\n' +
+    '\n' +
+    '👗 Cinturilla de 13 varillas\n' +
+    '✨ Sola o con chaleco – ¡Tú eliges! ✨\n' +
+    '\n' +
+    '💬 ¡Escríbeme y consigue la tuya ahora! 💬',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: '5a0d345b8649127328a2688008c128e3'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_52f76e11-a920-42bc-b12c-0b881108adb6',
+  keyword: 'ans_aeccf911-78df-488d-b78c-8e275c3c88b9',
+  answer: '📢 ¡Elige tu opción y recibe más info al instante! 👇\n' +
+    '\n' +
+    '1️⃣ Catálogo de Cinturilla 13 varillas Sola ⏳✨\n' +
+    '2️⃣ Catálogo de Cinturilla 13 varillas con Chaleco 👗🔥\n' +
+    '3️⃣ Material de la Cinturilla 13 Varillas Sola ✨\n' +
+    '4️⃣ Guía de tallas 📏✨\n' +
+    '5️⃣ Comprar ahora 🎉💰\n' +
+    '6️⃣ Cancelar compra ❌\n' +
+    '✍️ Escribe el número de la opción que deseas y te enviaremos la info de inmediato. 🚀😊',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '5cc4ab6adbde698cd4ce501c9733e46a'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '573045993015@s.whatsapp.net',
+    fromMe: false,
+    id: '5B14BC52E5F1EA95C228F145FC58279D',
+    participant: undefined
+  },
+  messageTimestamp: 1739984598,
+  pushName: 'Juan David',
+  broadcast: false,
+  message: Message {
+    conversation: '5',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: '5',
+  from: '573045993015'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '573045993015@s.whatsapp.net',
+    fromMe: false,
+    id: 'F5E9A78ACFFB1F87E6588F743A302F63',
+    participant: undefined
+  },
+  messageTimestamp: 1739984600,
+  pushName: 'Juan David',
+  broadcast: false,
+  message: Message {
+    conversation: '1',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: '1',
+  from: '573045993015'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_317ac8b2-263d-48cf-b4a4-9c554b659562',
+  keyword: 'ans_c6b9b4e0-669c-4e8e-aff6-7383233e66a7',
+  answer: '📍 ¿Cuál es tu nombre completo?',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: 'e7225e2e8d7b8f2d11f5fcec00ef87a7'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '573045993015@s.whatsapp.net',
+    fromMe: false,
+    id: 'C1D2F3F2DA6D14F68DC032ED8FD1940D',
+    participant: undefined
+  },
+  messageTimestamp: 1739984602,
+  pushName: 'Juan David',
+  broadcast: false,
+  message: Message {
+    conversation: 'Juan',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: 'Juan',
+  from: '573045993015'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_8b2c5172-6100-4d3e-bf58-e33944330be4',
+  keyword: 'ans_317ac8b2-263d-48cf-b4a4-9c554b659562',
+  answer: '😊 Ahora dime tu dirección completa (Ciudad, Barrio).',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '4f35bbedb8642aaf44e3bff9df454493'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '573045993015@s.whatsapp.net',
+    fromMe: false,
+    id: '85D8337E870C0CE317579163B732156D',
+    participant: undefined
+  },
+  messageTimestamp: 1739984610,
+  pushName: 'Juan David',
+  broadcast: false,
+  message: Message {
+    conversation: 'Calle 183',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: 'Calle 183',
+  from: '573045993015'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_a68c64b6-8eff-4bdf-8e5f-2e322446c962',
+  keyword: 'ans_8b2c5172-6100-4d3e-bf58-e33944330be4',
+  answer: '🏠 ¡Perfecto! Ahora indícame tu teléfono de contacto 📲',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: 'c478e566ed2c7b0d60fd04e37b9744e5'
+}

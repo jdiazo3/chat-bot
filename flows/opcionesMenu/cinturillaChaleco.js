@@ -11,6 +11,10 @@ const flowCinturillaChaleco = addKeyword(EVENTS.ACTION)
         .addAnswer(' ', { media: pdfPath ,filename: 'Cinturilla13VarillasChaleco.pdf'})
         .addAnswer('⏳')
         .addAnswer(' ', { media: pdfPath1 ,filename: 'sola.mp4'})
-        .addAnswer(messages.furtherAssistance);
+        .addAnswer(messages.furtherAssistance, { capture: true }, async (ctx, { state,fallBack, flowDynamic }) => {
+                    if (!['si', 'no'].includes(ctx.body.toLowerCase())) {
+                                return fallBack(messages.colorFallback);
+                            }
+                        });
 
 module.exports = flowCinturillaChaleco;

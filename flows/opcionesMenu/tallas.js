@@ -12,7 +12,11 @@ const flowTallas = addKeyword(EVENTS.ACTION)
     })
     .addAnswer(' ', {
         media: pdfPath1
-    }).addAnswer(messages.furtherAssistance);
+    }).addAnswer(messages.furtherAssistance, { capture: true }, async (ctx, { state,fallBack, flowDynamic }) => {
+                if (!['si', 'no'].includes(ctx.body.toLowerCase())) {
+                            return fallBack(messages.colorFallback);
+                        }
+                    });
 
 // Usa `addFlow` para conectar los flows correctamente
 module.exports = flowTallas;

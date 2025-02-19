@@ -27,6 +27,19 @@ function getUserData() {
         });
     });
 }
+function getPedidoData(id) {
+    return new Promise((resolve, reject) => {
+        const query = `SELECT * FROM pedido where estado = 'PENDIENTE_COMPRA_DROPI' and notificado = 0 and id =?`;
+        const values = [id];
+        connection.query(query,values, (err, results)  => {
+            if (err) {
+                return reject(err);
+            } else {
+                return resolve(results);
+            }
+        });
+    });
+}
 
 /**
  * Función para insertar datos en la tabla de pedidos.
@@ -61,8 +74,11 @@ function insertPedido(producto,nombre, direccion, numero_contacto, talla, color,
 }
 function cancelarPedido(idPedido) {
     return new Promise((resolve, reject) => {
-        const query = `UPDATE pedido SET estado = ?, notificado = ? WHERE id = ?`;
-        const values = [ChatbotStates.CANCELADO, 0, idPedido];
+        const date = new Date();
+        const isoString = date.toLocaleString('sv-SE').replace('T', ' '); // Formato "YYYY-MM-DD HH:MM:SS"
+        console.log(isoString);
+        const query = `UPDATE pedido SET estado = ?, notificado = ?,fecha_cancelacion = ? WHERE id = ?`;
+        const values = [ChatbotStates.CANCELADO, 0,isoString, idPedido];
         
         connection.query(query, values, (err, results) => {
             if (err) {
@@ -80,8 +96,11 @@ function cancelarPedido(idPedido) {
 }
 function notificarPedido(idPedido) {
     return new Promise((resolve, reject) => {
-        const query = `UPDATE pedido SET estado = ? , notificado = ? WHERE id = ?`;
-        const values = [ChatbotStates.PENDIENTE_NOTIFICACION_GUIA, 1, idPedido];
+        const date = new Date();
+        const isoString = date.toLocaleString('sv-SE').replace('T', ' '); // Formato "YYYY-MM-DD HH:MM:SS"
+        console.log(isoString);
+        const query = `UPDATE pedido SET estado = ? , notificado = ?, fecha_notificado = ? WHERE id = ?`;
+        const values = [ChatbotStates.PENDIENTE_NOTIFICACION_GUIA, 1,isoString, idPedido];
         
         connection.query(query, values, (err, results) => {
             if (err) {
@@ -99,4 +118,4 @@ function notificarPedido(idPedido) {
 }
 
 
-module.exports = { getUserData, insertPedido,cancelarPedido,notificarPedido};
+module.exports = { getUserData, insertPedido,cancelarPedido,notificarPedido,getPedidoData};

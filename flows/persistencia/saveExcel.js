@@ -33,7 +33,7 @@ async function guardarPedidoEnExcel() {
 
         // Añadimos una hoja de cálculo con el encabezado
         let worksheet = xlsx.utils.aoa_to_sheet([
-            ["ID", "Producto", "Nombre", "Dirección", "Teléfono", "Talla", "Color", "Whatsapp", "Fecha", "Estado"]
+            ["ID", "Producto", "Nombre", "Dirección", "Teléfono", "Talla", "Color", "Whatsapp", "Fecha", "Estado","# de guia"]
         ]);
 
         // Añadimos los pedidos a la hoja de cálculo

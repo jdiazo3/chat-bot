@@ -8,11 +8,12 @@ module.exports = {
     askPhone: '🏠 ¡Perfecto! Ahora indícame tu teléfono de contacto 📲',
     askSize: 'Genial. Ahora dime tu talla (XS, S, M, L, XL, 2XL o 3XL) 📏',
     askColor: '¡Casi listo!, ¿De qué color lo quieres? (Negro o Beige) 🎨',
-    confirmOrder: '✅ Si la información es correcta, responde con *1*. \n❌ Si hay un error, responde con *2* y reiniciamos el proceso.',
-    thankYou: 'Cada curva, un motivo para sonreír gracias a Zumo Slim ⏳\n' +
-              'Tu pedido llegará de 3 a 4 días, te envío la guía apenas haya sido generada 🚚\n' +
-              'Recuerda que no completar la compra 🛍️ puede causarte una penalización ❌\n' +
-              'GRACIAS POR TU COMPRA ⌛.',
+    confirmOrder: '1️⃣ Si la información es correcta. \n 2️⃣ Si hay un error, reiniciamos el proceso.',
+    thankYou: '✨ ¡Gracias por confiar en Zumo Slim! Soy Zoé, tu asistente virtual 💖 ⏳\n' +
+          'Cada curva es un motivo para sonreír, y estoy feliz de acompañarte en este cambio. 😊\n\n' +
+          'Tu pedido llegará en 3 a 4 días, y te enviaré la guía apenas sea generada 🚚\n' +
+          'Recuerda que no completar la compra 🛍️ puede causarte una penalización ❌\n\n' +
+          'GRACIAS POR TU COMPRA ⌛.',
     errorSaving: 'Hubo un problema al guardar tu pedido, por favor inténtalo de nuevo más tarde.',
     incorrectResponse: 'Por favor, responde con *1* para confirmar o *2* para corregir la información.',
     menucompra:'1️⃣ Para comprar la cinturilla sola ⏳✨\n' +
@@ -22,10 +23,9 @@ module.exports = {
                 '1️⃣ Catálogo de Cinturilla 13 varillas Sola ⏳✨\n' +
                 '2️⃣ Catálogo de Cinturilla 13 varillas con Chaleco 👗🔥\n' +
                 '3️⃣ Material de la Cinturilla 13 Varillas Sola ✨\n' +
-                '4️⃣ Material de la Cinturilla 13 Varillas con Chaleco ✨\n' +
-                '5️⃣ Guía de tallas 📏✨\n' +
-                '6️⃣ Comprar ahora 🎉💰\n'+
-                '7️⃣ Cancelar compra ❌\n'+
+                '4️⃣ Guía de tallas 📏✨\n' +
+                '5️⃣ Comprar ahora 🎉💰\n' +
+                '6️⃣ Cancelar compra ❌\n'+
                 '✍️ Escribe el número de la opción que deseas y te enviaremos la info de inmediato. 🚀😊',
     menuNeodimio:'1 para generar Excel',
     uploadFile: 'El archivo ya esta en el drive ?',
@@ -33,8 +33,12 @@ module.exports = {
     tallaFallback: 'No he entendido. Por favor elige una opción entre (XS, S, M, L, XL, 2XL o 3XL).',
     colorFallback: 'No he entendido. Por favor elige una opción entre (*Negro* o *Beige*).',
     cancelacionFallback: 'No he entendido. Por favor elige una opción *1* o *2* .',
+    agradecimiento :'¡Gracias por comunicarte conmigo! 💖  \n\n' +
+    'Soy Zoé, tu asistente de Zumo Slim, y estoy aquí para ayudarte a encontrar la cinturilla perfecta para ti. \n' +
+    'Si tienes alguna pregunta o necesitas asesoría, no dudes en decirme.\n\n' +
+    '¡Estoy encantada de acompañarte en tu camino hacia una silueta espectacular!✨💫',
     welcomeMessage: [
-        '✨ Bienvenida a Zumo Slim 💖 ⏳',
+        '✨ ¡Hola! Soy Zoé, tu asistente de Zumo Slim 💖 ⏳',
         '🌿 Cuidarte es amarte 🌿',
         '',
         '🔥 ¡Oferta Especial! 🔥',
@@ -45,9 +49,9 @@ module.exports = {
         '💵 Pago contra entrega 💵',
         '',
         '👗 Cinturilla de 13 varillas',
-        '✨ Sola o con chaleco – ¡Tú eliges!',
+        '✨ Sola o con chaleco – ¡Tú eliges! ✨',
         '',
-        '💬 ¡Pregunta ahora y consigue la tuya! 💬',
+        '💬 ¡Escríbeme y consigue la tuya ahora! 💬',
     ],
     materialInfo: [
         '✨ Material de la Cinturilla 13 Varillas Sola ✨',
