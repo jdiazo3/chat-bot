@@ -3,7 +3,7 @@ const { getUserData,cancelarPedido,getPedidoData } = require('../persistencia/ba
 const messages = require('../enums/mensajes.js');
 const { v4: uuidv4 } = require('uuid');
 const ramdomString = uuidv4();
-
+const flowMenu = require('../menu.js');
 /*flujo cancelación*/
 
 const flowCancelacion = addKeyword(ramdomString)
@@ -87,11 +87,19 @@ const flowCancelacion = addKeyword(ramdomString)
                 await flowDynamic('Error al cancelar tu pedido, por favor intenta más tarde o contacta soporte.');
             }
         }
-    }).addAnswer(messages.furtherAssistance, { capture: true }, async (ctx, { state,fallBack, flowDynamic }) => {
-                if (!['si', 'no'].includes(ctx.body.toLowerCase())) {
-                            return fallBack(messages.colorFallback);
-                        }
-                    });
+    }).addAnswer(messages.furtherAssistance, { capture: true }, async (ctx, { gotoFlow,fallBack, flowDynamic }) => {
+                   if (!['si', 'no'].includes(ctx.body.toLowerCase())) {
+                               return fallBack(messages.colorFallback);
+                           }
+                           console.log('antes del si');
+                           if('si'===ctx.body.toLowerCase()){
+                               console.log('entro al si');
+                               return gotoFlow(require('../menu.js'));
+                           }else{
+                               console.log('entro al else');
+                               return gotoFlow(require('../despedida.js'));
+                           }
+                       });
 
     async function validarDatosPedido(state) {
         try {

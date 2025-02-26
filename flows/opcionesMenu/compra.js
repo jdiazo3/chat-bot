@@ -5,7 +5,7 @@ const { ChatbotStates } = require('../enums/enums.js');
 const { v4: uuidv4 } = require('uuid');
 const ramdomString = uuidv4();
 const reiniciar = addKeyword(EVENTS.ACTION).addAnswer('Vamos a empezar de nuevo. 📍 digita *5*');
-
+const flowMenu = require('../menu.js');
 
 const flowCompra = addKeyword(ramdomString)
     .addAnswer(messages.greetings)
@@ -84,10 +84,19 @@ const flowCompra = addKeyword(ramdomString)
                 await flowDynamic(messages.errorSaving);
             }
         } 
-    }).addAnswer(messages.furtherAssistance, { capture: true }, async (ctx, { fallBack, flowDynamic }) => {
-                    if (!['si', 'no'].includes(ctx.body.toLowerCase())) {
-                                return fallBack(messages.colorFallback);
-                            }
-                        });
+    }).addAnswer(messages.furtherAssistance, { capture: true }, async (ctx, { gotoFlow,fallBack, flowDynamic }) => {
+            if (!['si', 'no'].includes(ctx.body.toLowerCase())) {
+                        return fallBack(messages.colorFallback);
+                    }
+                    console.log('antes del si');
+                    if('si'===ctx.body.toLowerCase()){
+                        console.log('entro al si');
+                        return gotoFlow(require('../menu.js'));
+                    }else{
+                        console.log('entro al else');
+                        return gotoFlow(require('../despedida.js'));
+                    }
+                });
+    
 // Exportar el objeto directamente
 module.exports = flowCompra;

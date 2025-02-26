@@ -8,9 +8,10 @@ const flowCinturillaChaleco = require('./opcionesMenu/cinturillaChaleco.js');
 const messages = require('./enums/mensajes.js');
 const flowCancelacion = require('./opcionesMenu/cancelacion.js');
 const flowCompra =  require('./opcionesMenu/compra.js');
+const { v4: uuidv4 } = require('uuid');
+const ramdomString = uuidv4();
 
-
-const flowMenu = addKeyword(['Si','si','SI','sI'], { sensitive: true })
+const flowMenu = addKeyword(ramdomString)
     .addAnswer(messages.menuPrompt, { capture: true }, async (ctx, { gotoFlow, fallBack, flowDynamic }) => {
         console.log("async");
         
