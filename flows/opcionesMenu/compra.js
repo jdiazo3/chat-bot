@@ -72,7 +72,7 @@ const flowCompra = addKeyword(ramdomString)
                     state.getMyState().telefono,state.getMyState().talla,state.getMyState().color,
                     state.getMyState().numeroWhat,ChatbotStates.PENDIENTE_COMPRA_DROPI); // Llama a la función y maneja el resultado
                     if (userData) {
-                        await flowDynamic(`Tu id de pedido es: *${userData.insertId}*`);
+                        await flowDynamic(`Tu id de pedido es: *${userData.id}*`);
                         await flowDynamic(messages.thankYou);
                         console.log('Datos de pedido insertados:', userData);
                     }
