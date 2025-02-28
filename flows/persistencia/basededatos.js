@@ -1,121 +1,123 @@
-const mysql = require('mysql2');
-const {  ChatbotStates } = require('../enums/enums.js');
+require('dotenv').config();
+const { Pool } = require('pg');
+const { ChatbotStates } = require('../enums/enums.js');
 
 /**
- * Setup de conexión a la base de datos MySQL.
+ * Setup de conexión a la base de datos PostgreSQL.
  */
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'chatbot'
+const pool = new Pool({
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    database: process.env.DB_NAME,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    ssl: {
+        rejectUnauthorized: false // Necesario para Render y conexiones seguras
+    }
 });
 
 /**
- * Función para recuperar datos de la base de datos.
+ * Función para recuperar pedidos pendientes.
  */
 function getUserData() {
-    return new Promise((resolve, reject) => {
-        const query = `SELECT * FROM pedido where estado = 'PENDIENTE_COMPRA_DROPI' and notificado = 0`;
-        
-        connection.query(query, (err, results)  => {
-            if (err) {
-                return reject(err);
-            } else {
-                return resolve(results);
-            }
+    return pool.query(`SELECT * FROM pedido WHERE estado = 'PENDIENTE_COMPRA_DROPI' AND notificado = FALSE`)
+        .then(res => res.rows)
+        .catch(err => {
+            console.error('Error al recuperar pedidos:', err);
+            throw err;
         });
-    });
-}
-function getPedidoData(id) {
-    return new Promise((resolve, reject) => {
-        const query = `SELECT * FROM pedido where estado = 'PENDIENTE_COMPRA_DROPI' and notificado = 0 and id =?`;
-        const values = [id];
-        connection.query(query,values, (err, results)  => {
-            if (err) {
-                return reject(err);
-            } else {
-                return resolve(results);
-            }
-        });
-    });
 }
 
 /**
- * Función para insertar datos en la tabla de pedidos.
- * 
- * @param {string} nombre - El nombre del cliente.
- * @param {string} direccion - La dirección del cliente.
- * @param {string} telefono - El número de teléfono del cliente.
- * @param {string} talla - La talla del pedido.
- * @param {string} color - El color del pedido.
- * @returns {Promise<void>} - Una promesa que resuelve si el insert tiene éxito.
+ * Función para recuperar un pedido por ID.
  */
-
-
-function insertPedido(producto,nombre, direccion, numero_contacto, talla, color,numero_whatsapp,estado) {
-    return new Promise((resolve, reject) => {
-        const date = new Date();
-        const isoString = date.toLocaleString('sv-SE').replace('T', ' '); // Formato "YYYY-MM-DD HH:MM:SS"
-        console.log(isoString);
-        const query = `INSERT INTO pedido (producto,nombre, direccion, numero_contacto, talla, color,numero_whatsapp,fecha,estado,notificado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
-        const values = [producto,nombre, direccion, numero_contacto, talla, color,numero_whatsapp,isoString,estado,0];
-        
-        connection.query(query, values, (err, results) => {
-            if (err) {
-                console.error('Error al insertar el pedido:', err);
-                return reject(err);
-            } else {
-                console.log('Pedido insertado con éxito:', results);
-                return resolve(results);
-            }
+function getPedidoData(id) {
+    return pool.query(`SELECT * FROM pedido WHERE estado = 'PENDIENTE_COMPRA_DROPI' AND notificado = FALSE AND id = $1`, [id])
+        .then(res => res.rows)
+        .catch(err => {
+            console.error('Error al recuperar el pedido:', err);
+            throw err;
         });
-    });
 }
+
+/**
+ * Función para insertar un nuevo pedido.
+ */
+function insertPedido(producto, nombre, direccion, numero_contacto, talla, color, numero_whatsapp, estado) {
+    const fecha = new Date().toISOString(); // Formato ISO "YYYY-MM-DDTHH:MM:SS.sssZ"
+    
+    const query = `
+        INSERT INTO pedido (producto, nombre, direccion, numero_contacto, talla, color, numero_whatsapp, fecha, estado, notificado) 
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, FALSE)
+        RETURNING *;
+    `;
+
+    const values = [producto, nombre, direccion, numero_contacto, talla, color, numero_whatsapp, fecha, estado];
+
+    return pool.query(query, values)
+        .then(res => {
+            console.log('Pedido insertado con éxito:', res.rows[0]);
+            return res.rows[0];
+        })
+        .catch(err => {
+            console.error('Error al insertar el pedido:', err);
+            throw err;
+        });
+}
+
+/**
+ * Función para cancelar un pedido.
+ */
 function cancelarPedido(idPedido) {
-    return new Promise((resolve, reject) => {
-        const date = new Date();
-        const isoString = date.toLocaleString('sv-SE').replace('T', ' '); // Formato "YYYY-MM-DD HH:MM:SS"
-        console.log(isoString);
-        const query = `UPDATE pedido SET estado = ?, notificado = ?,fecha_cancelacion = ? WHERE id = ?`;
-        const values = [ChatbotStates.CANCELADO, 0,isoString, idPedido];
-        
-        connection.query(query, values, (err, results) => {
-            if (err) {
-                console.error('Error al cancelar el pedido:', err);
-                return reject(err);
-            } else if (results.affectedRows === 0) {
-                console.warn('No se encontró un pedido con el ID proporcionado.');
-                return reject(new Error('Pedido no encontrado.'));
-            } else {
-                console.log('Pedido cancelado con éxito:', results);
-                return resolve(results);
-            }
+    const fecha = new Date().toISOString();
+
+    const query = `
+        UPDATE pedido 
+        SET estado = $1, notificado = FALSE, fecha_cancelacion = $2 
+        WHERE id = $3 
+        RETURNING *;
+    `;
+
+    const values = [ChatbotStates.CANCELADO, fecha, idPedido];
+
+    return pool.query(query, values)
+        .then(res => {
+            if (res.rowCount === 0) throw new Error('Pedido no encontrado.');
+            console.log('Pedido cancelado con éxito:', res.rows[0]);
+            return res.rows[0];
+        })
+        .catch(err => {
+            console.error('Error al cancelar el pedido:', err);
+            throw err;
         });
-    });
 }
+
+/**
+ * Función para notificar un pedido.
+ */
 function notificarPedido(idPedido) {
-    return new Promise((resolve, reject) => {
-        const date = new Date();
-        const isoString = date.toLocaleString('sv-SE').replace('T', ' '); // Formato "YYYY-MM-DD HH:MM:SS"
-        console.log(isoString);
-        const query = `UPDATE pedido SET estado = ? , notificado = ?, fecha_notificado = ? WHERE id = ?`;
-        const values = [ChatbotStates.PENDIENTE_NOTIFICACION_GUIA, 1,isoString, idPedido];
-        
-        connection.query(query, values, (err, results) => {
-            if (err) {
-                console.error('Error al MODIFICAR el pedido:', err);
-                return reject(err);
-            } else if (results.affectedRows === 0) {
-                console.warn('No se encontró un pedido con el ID proporcionado.');
-                return reject(new Error('Pedido no encontrado.'));
-            } else {
-                console.log('Pedido modificado con éxito:', results);
-                return resolve(results);
-            }
+    const fecha = new Date().toISOString();
+
+    const query = `
+        UPDATE pedido 
+        SET estado = $1, notificado = TRUE, fecha_notificado = $2 
+        WHERE id = $3 
+        RETURNING *;
+    `;
+
+    const values = [ChatbotStates.PENDIENTE_NOTIFICACION_GUIA, fecha, idPedido];
+
+    return pool.query(query, values)
+        .then(res => {
+            if (res.rowCount === 0) throw new Error('Pedido no encontrado.');
+            console.log('Pedido notificado con éxito:', res.rows[0]);
+            return res.rows[0];
+        })
+        .catch(err => {
+            console.error('Error al notificar el pedido:', err);
+            throw err;
         });
-    });
 }
 
-
-module.exports = { getUserData, insertPedido,cancelarPedido,notificarPedido,getPedidoData};
+// Exportar funciones
+module.exports = { getUserData, insertPedido, cancelarPedido, notificarPedido, getPedidoData };
