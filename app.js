@@ -19,19 +19,19 @@ const flowCinturillaSola = require('./flows/opcionesMenu/cinturillaSola');
 const flowCinturillaChaleco = require('./flows/opcionesMenu/cinturillaChaleco.js');
 
 const app = express();
-const PORT = process.env.PORT || 3003;
+const PORT = process.env.PORT || 3000;  // Usamos un solo puerto
 
-// Servir archivos estáticos desde la carpeta "public"
+// 📌 Servir archivos estáticos desde la carpeta "docs"
 app.use('/docs', express.static(path.join(__dirname, 'docs')));
 
-// Ruta de prueba para verificar que el servidor funciona
+// 📌 Ruta de prueba para verificar que el servidor funciona
 app.get('/', (req, res) => {
-    res.send('Servidor de archivos funcionando correctamente.');
+    res.send('Servidor de archivos y chatbot en ejecución.');
 });
 
-// Iniciar Express en paralelo al bot
-app.listen(PORT, () => {
-    console.log(`Servidor de archivos corriendo en http://localhost:${PORT}`);
+// 📌 Iniciar Express antes del bot
+const server = app.listen(PORT, () => {
+    console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
 
 /**************** Main Bot ***********************/
@@ -49,7 +49,8 @@ const main = async () => {
         database: adapterDB,
     });
 
-    QRPortalWeb();
+    // 📌 Cambiar puerto de QRPortalWeb para evitar conflicto
+    QRPortalWeb({ port: 3001 }); 
 };
 
 main();
