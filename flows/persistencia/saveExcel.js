@@ -2,9 +2,9 @@ const xlsx = require('xlsx');
 const fs = require('fs');
 const path = require('path');
 const { getUserData, notificarPedido } = require('./basededatos.js');
-
+const RUTAARCHIVO = process.env.RUTAARCHIVO
 // Ruta del archivo Excel
-const filePath = path.resolve(__dirname, '../../docs/Clientes.xlsx');
+const filePath = path.resolve(RUTAARCHIVO+'/Clientes.xlsx');
 
 /**
  * Asegura que el directorio donde se guardará el archivo Excel existe.
