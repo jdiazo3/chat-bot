@@ -1,18 +1,23 @@
-DROP DATABASE  chatbot;
+DROP DATABASE IF EXISTS chatbot;
 CREATE DATABASE chatbot;
 
-use chatbot;
+CREATE TABLE pedido (
+    id BIGSERIAL PRIMARY KEY,
+    producto VARCHAR(100),
+    nombre VARCHAR(100),
+    direccion VARCHAR(100),
+    numero_contacto VARCHAR(20),
+    talla VARCHAR(4),
+    color VARCHAR(10),
+    numero_whatsapp VARCHAR(20),
+    fecha TIMESTAMP,
+    fecha_cancelacion TIMESTAMP,
+    notificado BOOLEAN,
+    fecha_notificado TIMESTAMP,
+    estado VARCHAR(30),
+    fecha_envio_guia TIMESTAMP,
+    numero_guia VARCHAR(50)
+);
 
-create table pedido (
-id bigint not null auto_increment,
-producto varchar(100),
-nombre varchar(100),
-direccion varchar(100),
-numero_contacto varchar(20),
-talla varchar(4),
-color varchar(10),
-numero_whatsapp varchar(20),
-fecha varchar(10),
-notificado TINYINT(1),
-estado varchar(30),
-primary key (id)) engine=InnoDB;
+-- Establecer la secuencia para que comience desde 10
+ALTER SEQUENCE pedido_id_seq RESTART WITH 10;

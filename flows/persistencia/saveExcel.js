@@ -4,7 +4,7 @@ const path = require('path');
 const { getUserData, notificarPedido } = require('./basededatos.js');
 
 // Ruta del archivo Excel
-const filePath = path.resolve(__dirname, '../../docs/envibot/Clientes.xlsx');
+const filePath = path.resolve(__dirname, '../../docs/Clientes.xlsx');
 
 /**
  * Asegura que el directorio donde se guardará el archivo Excel existe.
