@@ -7,10 +7,14 @@ const ramdomString = uuidv4();
 const reiniciar = addKeyword(EVENTS.ACTION).addAnswer('Vamos a empezar de nuevo. 📍 digita *5*');
 const flowMenu = require('../menu.js');
 
+const flujoFinal = addKeyword(EVENTS.ACTION).addAnswer('Se canceló por inactividad')
+
+
+
 const flowCompra = addKeyword(ramdomString)
     .addAnswer(messages.greetings)
     .addAnswer( messages.menucompra
-        , { capture: true }, async (ctx, { state,fallBack }) => {
+        , { capture: true, idle: 2000 }, async (ctx, { state,fallBack, inRef }) => {
             if (!['1','2'].includes(ctx.body.toLowerCase())) {
                 return fallBack(messages.cancelacionFallback);
             }
@@ -62,7 +66,6 @@ const flowCompra = addKeyword(ramdomString)
             return gotoFlow(reiniciar);
         } else if (choice === '1') {
             try {
-                try {
                     if(state.getMyState().producto ==='1'){
                         await state.update({ producto:'CINTURILLA_SOLA' });
                     }else{
@@ -72,13 +75,11 @@ const flowCompra = addKeyword(ramdomString)
                     state.getMyState().telefono,state.getMyState().talla,state.getMyState().color,
                     state.getMyState().numeroWhat,ChatbotStates.PENDIENTE_COMPRA_DROPI); // Llama a la función y maneja el resultado
                     if (userData) {
-                        await flowDynamic(`Tu id de pedido es: *${userData.id}*`);
-                        await flowDynamic(messages.thankYou);
+                        await flowDynamic(`Tu id de pedido es: *${userData.id}*\n\n`+
+                            messages.thankYou
+                        );
                         console.log('Datos de pedido insertados:', userData);
                     }
-                } catch (error) {
-                    console.error('Error al insertar datos de la base de datos:', error);
-                }
             } catch (error) {
                 console.error('Error al guardar el pedido:', error);
                 await flowDynamic(messages.errorSaving);
@@ -86,7 +87,7 @@ const flowCompra = addKeyword(ramdomString)
         } 
     }).addAnswer(messages.furtherAssistance, { capture: true }, async (ctx, { gotoFlow,fallBack, flowDynamic }) => {
             if (!['si', 'no'].includes(ctx.body.toLowerCase())) {
-                        return fallBack(messages.colorFallback);
+                        return fallBack(messages.sinoFallback);
                     }
                     console.log('antes del si');
                     if('si'===ctx.body.toLowerCase()){

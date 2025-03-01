@@ -89,7 +89,7 @@ const flowCancelacion = addKeyword(ramdomString)
         }
     }).addAnswer(messages.furtherAssistance, { capture: true }, async (ctx, { gotoFlow,fallBack, flowDynamic }) => {
                    if (!['si', 'no'].includes(ctx.body.toLowerCase())) {
-                               return fallBack(messages.colorFallback);
+                               return fallBack(messages.sinoFallback);
                            }
                            console.log('antes del si');
                            if('si'===ctx.body.toLowerCase()){

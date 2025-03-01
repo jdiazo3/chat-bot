@@ -10,10 +10,12 @@ module.exports = {
     askColor: '¡Casi listo!, ¿De qué color lo quieres? (Negro o Beige) 🎨',
     confirmOrder: '1️⃣ Si la información es correcta. \n 2️⃣ Si hay un error, reiniciamos el proceso.',
     thankYou: '✨ ¡Gracias por confiar en Zumo Slim! Soy Zoé, tu asistente virtual 💖 ⏳\n' +
-          'Cada curva es un motivo para sonreír, y estoy feliz de acompañarte en este cambio. 😊\n\n' +
-          'Tu pedido llegará en 3 a 4 días, y te enviaré la guía apenas sea generada 🚚\n' +
-          'Recuerda que no completar la compra 🛍️ puede causarte una penalización ❌\n\n' +
-          'GRACIAS POR TU COMPRA ⌛.',
+                    'Cada curva es un motivo para sonreír, y estoy feliz de acompañarte en este cambio. 😊\n\n' +
+                    'Tu pedido llegará en 3 a 4 días, y te enviaré la guía apenas sea generada 🚚\n' +
+                    'Recuerda que no completar la compra 🛍️ puede causarte una penalización ❌\n' +
+                    'Recuerda que no se hacen cambios por ser una prenda íntima. \n' +
+                    'Garantía de los primeros 5 días por costuras o cremallera solo si es notificado por medio de fotos de la prenda y el empaque.\n\n' +
+                    'GRACIAS POR TU COMPRA ⌛\n',
     errorSaving: 'Hubo un problema al guardar tu pedido, por favor inténtalo de nuevo más tarde.',
     incorrectResponse: 'Por favor, responde con *1* para confirmar o *2* para corregir la información.',
     menucompra:'1️⃣ Para comprar la cinturilla sola ⏳✨\n' +
@@ -31,6 +33,7 @@ module.exports = {
     uploadFile: 'El archivo ya esta en el drive ?',
                 menuFallback: 'No he entendido. Por favor elige una opción entre *1* y *6*.',
     tallaFallback: 'No he entendido. Por favor elige una opción entre (XS, S, M, L, XL, 2XL o 3XL).',
+    sinoFallback: 'No he entendido. Por favor elige una opción entre (*si* o *no*).',
     colorFallback: 'No he entendido. Por favor elige una opción entre (*Negro* o *Beige*).',
     cancelacionFallback: 'No he entendido. Por favor elige una opción *1* o *2* .',
     agradecimiento :'¡Gracias por comunicarte conmigo! 💖  \n\n' +
